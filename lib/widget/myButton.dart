@@ -7,6 +7,7 @@ class myButton extends StatelessWidget {
   final Color TextColor;
   final double radius;
   final double elevation;
+  final VoidCallback onPressed;
 
   const myButton(
       {super.key,
@@ -14,11 +15,13 @@ class myButton extends StatelessWidget {
       required this.backgroundColor,
       required this.TextColor,
       required this.radius,
-      required this.elevation});
+      required this.elevation,
+      required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
+      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: backgroundColor,
         foregroundColor: textColor,
@@ -27,7 +30,6 @@ class myButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(radius),
         ),
       ),
-      onPressed: () {},
       child: Text(
         textButton,
       ),
