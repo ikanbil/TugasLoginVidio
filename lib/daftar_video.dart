@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:latihan11pplg_2024/login_video.dart';
+import 'package:latihan11pplg_2024/widgetVidio/buttonElavatedVidio.dart';
+import 'package:latihan11pplg_2024/widgetVidio/sosmedVidio.dart';
+import 'package:latihan11pplg_2024/widgetVidio/textUtamaVidio.dart';
+import 'package:latihan11pplg_2024/widgetVidio/textfieldUtamaVidio.dart';
+import 'package:latihan11pplg_2024/widgetVidio/textbuttonCustomVidio.dart';
+import 'package:latihan11pplg_2024/widgetVidio/textspanVidio.dart';
 
 class DaftarVideo extends StatefulWidget {
   const DaftarVideo({super.key});
@@ -9,10 +16,6 @@ class DaftarVideo extends StatefulWidget {
 
 class _DaftarVideoState extends State<DaftarVideo> {
   bool _obscureText = true;
-  bool _isEmailFilled = false;
-  bool _isPasswordFilled = false;
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
 
   void _toggleVisibility() {
     setState(() {
@@ -20,348 +23,170 @@ class _DaftarVideoState extends State<DaftarVideo> {
     });
   }
 
-  void _updateButtonState() {
-    setState(() {
-      _isEmailFilled = _emailController.text.isNotEmpty;
-      _isPasswordFilled = _passwordController.text.isNotEmpty;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _emailController.addListener(_updateButtonState);
-    _passwordController.addListener(_updateButtonState);
-  }
-
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 15, 15, 15),
+      backgroundColor: const Color.fromARGB(255, 15, 15, 15),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 15, 15, 15),
+        backgroundColor: const Color.fromARGB(255, 15, 15, 15),
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            icon: SizedBox(
+              width: 24,
+              height: 24,
+              child: Image.asset(
+                'asset/close.png',
+                fit: BoxFit.cover,
+              ),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LoginVideo()),
+              );
+            },
+          ),
+        ],
       ),
       body: Center(
         child: Column(
           children: [
-            Container(
-              child: Text(
-                "Selamat Datang Di Vidio!",
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
+            TextVidio(
+              text: "Selamat Datang Di Vidio!",
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              textColor: Colors.white,
             ),
-            Container(
-              child: Text(
-                "Buat akunmu yuk!",
-                style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
+            TextVidio(
+              text: "Buat akunmu yuk!",
+              fontSize: 17,
+              fontWeight: FontWeight.bold,
+              textColor: Colors.white,
             ),
-            SizedBox(height: 10.0),
-            Container(
-              child: Center(
-                child: Text(
-                  "Terus Kamu bisa mulai nonton tayangan apa pun yang",
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Color.fromARGB(255, 149, 149, 149),
-                  ),
+            const SizedBox(height: 10.0),
+            TextVidio(
+              text: "Terus Kamu bisa mulai nonton tayangan apa pun yang",
+              fontSize: 12,
+              fontWeight: FontWeight.normal,
+              textColor: Color.fromARGB(255, 149, 149, 149),
+            ),
+            TextVidio(
+              text: "kamu mau.",
+              fontSize: 12,
+              fontWeight: FontWeight.normal,
+              textColor: Color.fromARGB(255, 149, 149, 149),
+            ),
+            const SizedBox(height: 10.0),
+            TextfieldVidio(
+              hintText: 'Email / Nomor HP',
+              hintColor: const Color.fromARGB(255, 150, 150, 150),
+              fontSize: 13,
+              borderColor: const Color.fromARGB(255, 221, 221, 221),
+              borderWidth: 0.5,
+              focusedBorderWidth: 2.0,
+              textColor: const Color.fromARGB(255, 216, 216, 216),
+              margin: const EdgeInsets.fromLTRB(23, 16, 23, 16),
+            ),
+            TextfieldVidio(
+              hintText: 'Kata Sandi',
+              hintColor: const Color.fromARGB(255, 150, 150, 150),
+              fontSize: 13,
+              borderColor: const Color.fromARGB(255, 221, 221, 221),
+              borderWidth: 0.5,
+              focusedBorderWidth: 2.0,
+              textColor: const Color.fromARGB(255, 216, 216, 216),
+              obscureText: _obscureText,
+              margin: const EdgeInsets.fromLTRB(23, 18, 23, 0),
+              suffixIcon: IconButton(
+                icon: Icon(
+                  _obscureText ? Icons.visibility : Icons.visibility_off,
+                  color: const Color.fromARGB(255, 150, 150, 150),
                 ),
+                onPressed: _toggleVisibility,
               ),
             ),
-            Container(
-              child: Center(
-                child: Text(
-                  "kamu mau.",
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Color.fromARGB(255, 149, 149, 149),
-                  ),
-                ),
-              ),
+            const SizedBox(height: 30.0),
+            ElavatedVidio(
+              buttonText: "Daftar",
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold,
+              backgroundColor: const Color.fromARGB(255, 211, 0, 42),
+              foregroundColor: Colors.white,
+              onPressed: () {},
+              margin: const EdgeInsets.all(0),
             ),
-            SizedBox(height: 10.0),
-            Container(
-              margin: EdgeInsets.fromLTRB(23, 16, 23, 16),
-              child: TextField(
-                controller: _emailController,
-                decoration: InputDecoration(
-                  hintText: 'Email / Nomor HP',
-                  hintStyle: TextStyle(
-                    color: Color.fromARGB(255, 150, 150, 150),
-                    fontSize: 13,
-                  ),
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color.fromARGB(255, 221, 221, 221),
-                      width: 0.5,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color.fromARGB(255, 221, 221, 221),
-                      width: 2.0,
-                    ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color.fromARGB(255, 221, 221, 221),
-                      width: 0.5,
-                    ),
-                  ),
-                ),
-                style: TextStyle(
-                  color: Color.fromARGB(255, 216, 216, 216),
-                ),
-              ),
+            const SizedBox(height: 15.0),
+            Textspanvidio(
+              leftText: "---------------------------- ",
+              centerText: "atau daftar pakai",
+              rightText: " ----------------------------",
+              fontSize: 10,
+              fontWeight: FontWeight.bold,
+              leftTextColor: Color.fromARGB(255, 75, 71, 71),
+              centerTextColor: Color.fromARGB(255, 148, 148, 148),
+              rightTextColor: Color.fromARGB(255, 75, 71, 71),
+              onPressed: () {},
+              buttonText: "",
+              buttonTextColor: Colors.transparent,
             ),
-            Container(
-              margin: EdgeInsets.fromLTRB(23, 18, 23, 0),
-              child: TextField(
-                controller: _passwordController,
-                obscureText: _obscureText,
-                decoration: InputDecoration(
-                  hintText: 'Kata Sandi',
-                  hintStyle: TextStyle(
-                    color: Color.fromARGB(255, 150, 150, 150),
-                    fontSize: 13,
-                  ),
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color.fromARGB(255, 221, 221, 221),
-                      width: 0.5,
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color.fromARGB(255, 221, 221, 221),
-                      width: 2.0,
-                    ),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color.fromARGB(255, 221, 221, 221),
-                      width: 0.5,
-                    ),
-                  ),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      _obscureText ? Icons.visibility : Icons.visibility_off,
-                      color: Color.fromARGB(255, 150, 150, 150),
-                    ),
-                    onPressed: _toggleVisibility,
-                  ),
-                ),
-                style: TextStyle(
-                  color: Color.fromARGB(255, 216, 216, 216),
-                ),
-              ),
+            const SizedBox(height: 18.0),
+            Sosmedvidio(
+              imageUrls: [
+                'https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png',
+                'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook_colored_svg_copy-512.png',
+              ],
+              sizes: [
+                Size(40, 40),
+                Size(30, 30),
+              ],
+              backgroundColor: const Color.fromARGB(255, 15, 15, 15),
+              onPressed: () {},
             ),
-            SizedBox(height: 30.0),
-            Container(
-              margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-              child: ElevatedButton(
-                onPressed: (_isEmailFilled && _isPasswordFilled) ? () {} : null,
-                style: ElevatedButton.styleFrom(
-                  textStyle: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  backgroundColor: (_isEmailFilled && _isPasswordFilled)
-                      ? const Color.fromARGB(255, 243, 33, 33)
-                      : const Color.fromARGB(255, 200, 200, 200),
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(2.0)),
-                  minimumSize: Size(320, 40),
-                ),
-                child: Text("Daftar"),
-              ),
+            const SizedBox(height: 15.0),
+            Textspanvidio(
+                leftText: "Udah ada akun?",
+                centerText: "",
+                rightText: "",
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                leftTextColor: Colors.white,
+                centerTextColor: Colors.black,
+                rightTextColor: Colors.black,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginVideo()),
+                  );
+                },
+                buttonText: "Masuk",
+                buttonTextColor: Colors.blue),
+            const SizedBox(height: 30.0),
+            Textspanvidio(
+              leftText: "Dengan Membuat akun, ",
+              centerText: "kamu setuju dengan ",
+              rightText: "syarat",
+              fontSize: 9,
+              fontWeight: FontWeight.bold,
+              leftTextColor: Color.fromARGB(255, 255, 255, 255),
+              centerTextColor: Color.fromARGB(255, 255, 255, 255),
+              rightTextColor: Color.fromARGB(255, 255, 255, 255),
+              onPressed: () {},
+              buttonText: "",
+              buttonTextColor: Colors.blue,
             ),
-            SizedBox(height: 15.0),
-            Container(
-              child: RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: "---------------------------- ",
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 75, 71, 71),
-                      ),
-                    ),
-                    TextSpan(
-                      text: "atau daftar pakai",
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 148, 148, 148),
-                      ),
-                    ),
-                    TextSpan(
-                      text: " ----------------------------",
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 75, 71, 71),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: 18.0),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(0),
-                      ),
-                      backgroundColor: Color.fromARGB(255, 15, 15, 15),
-                    ),
-                    child: SizedBox(
-                      width: 40,
-                      height: 40,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(0),
-                        child: Image.network(
-                          'https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(0),
-                      ),
-                      backgroundColor: Color.fromARGB(255, 15, 15, 15),
-                    ),
-                    child: SizedBox(
-                      width: 30,
-                      height: 30,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(0),
-                        child: Image.network(
-                          'https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook_colored_svg_copy-512.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 15.0),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Udah ada akun?",
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 255, 255, 255),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      print("Text button tapped");
-                    },
-                    style: TextButton.styleFrom(
-                        padding: EdgeInsets.fromLTRB(3, 0, 0, 0),
-                        minimumSize: Size(0, 0),
-                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                        foregroundColor: Colors.blue),
-                    child: Text(
-                      "Masuk",
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Spacer(),
-            Container(
-              margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-              child: RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: "Dengan Membuat akun, kamu setuju dengan ",
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                    ),
-                    TextSpan(
-                      text: "syarat",
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
-              child: RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: "Penggunaan ",
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue,
-                      ),
-                    ),
-                    TextSpan(
-                      text: " & ",
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                    ),
-                    TextSpan(
-                      text: " Kebijakan Privasi",
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            Textspanvidio(
+              leftText: "Penggunaan  ",
+              centerText: "& ",
+              rightText: "Kebijakan Privasi",
+              fontSize: 9,
+              fontWeight: FontWeight.bold,
+              leftTextColor: Colors.blue,
+              centerTextColor: Color.fromARGB(255, 255, 255, 255),
+              rightTextColor: Colors.blue,
+              onPressed: () {},
+              buttonText: "",
+              buttonTextColor: Colors.blue,
             ),
           ],
         ),

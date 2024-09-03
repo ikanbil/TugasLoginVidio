@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:latihan11pplg_2024/widget/material.dart';
+import 'package:latihan11pplg_2024/Latihanwidget/material.dart';
 
 class myButton extends StatelessWidget {
   final String textButton;

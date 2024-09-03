@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:latihan11pplg_2024/widget/material.dart';
-import 'package:latihan11pplg_2024/widget/myButton.dart';
-import 'package:latihan11pplg_2024/widget/myTextField.dart';
+import 'package:latihan11pplg_2024/Latihanwidget/material.dart';
+import 'package:latihan11pplg_2024/Latihanwidget/myButton.dart';
+import 'package:latihan11pplg_2024/Latihanwidget/myTextField.dart';
 
 class login_page extends StatefulWidget {
   const login_page({super.key});
@@ -38,7 +38,10 @@ class _login_pageState extends State<login_page> {
                 textStyle: TextStyle(color: textColor),
                 isObsecure: false),
             myButton(
-                onPressed: () {},
+                onPressed: () {
+                  if ((usernamecontroller == "Admin") &&
+                      (Passwordcontroller == "Admin")) {}
+                },
                 textButton: "login",
                 backgroundColor: primaryColor,
                 TextColor: textColor,

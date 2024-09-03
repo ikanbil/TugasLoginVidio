@@ -1,4 +1,4 @@
-import 'package:latihan11pplg_2024/widget/material.dart';
+import 'package:latihan11pplg_2024/Latihanwidget/material.dart';
 import 'package:flutter/material.dart';
 
 const primaryColor = Color.fromARGB(255, 0, 0, 0);
